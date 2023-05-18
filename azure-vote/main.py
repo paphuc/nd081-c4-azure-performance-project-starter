@@ -18,22 +18,22 @@ from opencensus.trace.tracer import Tracer
 logger = logging.getLogger(__name__)
 
 logger.addHandler(AzureLogHandler(
-        connection_string=f'InstrumentationKey={INSTRUMENTATION_KEY}')
+        connection_string=f'InstrumentationKey=31ce0d52-6c79-462a-abbd-253d4f4913f7')
 )
 logger.addHandler(AzureEventHandler(
-        connection_string=f'InstrumentationKey={INSTRUMENTATION_KEY}')
+        connection_string=f'InstrumentationKey=31ce0d52-6c79-462a-abbd-253d4f4913f7')
 )
 logger.setLevel(logging.INFO)
 
 # Metrics
 exporter = metrics_exporter.new_metrics_exporter(
         enable_standard_metrics=True,
-        connection_string=f'InstrumentationKey={INSTRUMENTATION_KEY}')
+        connection_string=f'InstrumentationKey=31ce0d52-6c79-462a-abbd-253d4f4913f7')
 
 # Tracing
 tracer = Tracer(
         exporter=AzureExporter(
-                connection_string=f'InstrumentationKey={INSTRUMENTATION_KEY}'),
+                connection_string=f'InstrumentationKey=31ce0d52-6c79-462a-abbd-253d4f4913f7'),
         sampler=ProbabilitySampler(1.0),
 )
 
@@ -42,7 +42,7 @@ app = Flask(__name__)
 # Requests
 middleware = FlaskMiddleware(
         app,
-        exporter=AzureExporter(connection_string=f'InstrumentationKey={INSTRUMENTATION_KEY}'),
+        exporter=AzureExporter(connection_string=f'InstrumentationKey=31ce0d52-6c79-462a-abbd-253d4f4913f7'),
         sampler=ProbabilitySampler(rate=1.0),
 )
 
